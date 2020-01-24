@@ -60,18 +60,18 @@ class Menu():
         if(respuesta == 's'):
             archivo = Archivo()
             self.__venta.setEmpleados(archivo.cargarLista())
-            self.qNuevoEmpleado()
-        # self.qNuevoEmpleado()
     
     def guardarArchivo(self, empleados):
         respuesta = input('¿Deseas guardar el archivo? (s/n): ')
         if(respuesta == 's'):
             archivo = Archivo()
             archivo.guardarLista(empleados)
+            self.imprimirEmpleados()
 
 
     def run(self):
         self.cargarArchivo()
+        self.qNuevoEmpleado()
         self.imprimirEmpleados()
         self.imprimirNomina()
         self.guardarArchivo(self.__venta.getEmpleados())
