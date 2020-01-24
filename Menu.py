@@ -33,7 +33,7 @@ class Menu():
             respuesta = self.pVenta()
         self.__venta.guardarEmpleado()
         self.imprimirEmpleado()
-        self.qNuevoEmpleado()
+        # self.qNuevoEmpleado()
 
     def imprimirVehiculos(self):
         for vehiculo in self.__venta.getEmpleado().getvVendidos():
@@ -72,6 +72,6 @@ class Menu():
     def run(self):
         self.cargarArchivo()
         self.qNuevoEmpleado()
-        self.imprimirEmpleados()
-        self.imprimirNomina()
+        # self.imprimirEmpleados()
+        # self.imprimirNomina()
         self.guardarArchivo(self.__venta.getEmpleados())
