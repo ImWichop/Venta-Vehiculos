@@ -72,6 +72,6 @@ class Menu():
     def run(self):
         self.cargarArchivo()
         self.qNuevoEmpleado()
-        # self.imprimirEmpleados()
-        # self.imprimirNomina()
+        self.imprimirEmpleados()
+        self.imprimirNomina()
         self.guardarArchivo(self.__venta.getEmpleados())
