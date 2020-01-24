@@ -46,7 +46,7 @@ class Menu():
 
     def imprimirEmpleados(self):
         print('---------------------')
-        print('Lista de empleados:')
+        print('\x1b[6;30;42m' + 'Lista de Empleados' + '\x1b[0m')
 
         for empleado in self.__venta.getEmpleados():
             print("Nombre: " + empleado.getNombre() + " Salario: "  + str(empleado.getSalario()) + " Comisiones: " + str(empleado.getComisiones()))

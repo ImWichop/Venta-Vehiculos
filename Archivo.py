@@ -9,15 +9,18 @@ class Archivo():
         print('1) Guardar reporte')
         print('2) Salir')
         option = input('Selecciona la opción que desees: ')
-
         if(option == '1'):
-            fichero_binario = open("lista_ventas","wb")
+            fichero_binario = open("lista","wb")
             pickle.dump(empleados, fichero_binario)
             fichero_binario.close()
             del(fichero_binario)
 
     def cargarLista(self):
-        fichero = open("lista_ventas", "rb")
-        self.__empleados = pickle.load(fichero)
-        
-        return self.__empleados
+        try:
+            fichero = open("lista", "rb")
+            self.__empleados = pickle.load(fichero)
+            return self.__empleados
+        except:
+            print("No existe el archivo")
+    
+    
