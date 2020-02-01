@@ -1,9 +1,13 @@
 from Venta import Venta
+from Vehiculo import Vehiculo
 from Archivo import Archivo
+from MongoDB import Mongo
+from pymongo import MongoClient
 
 class Menu():
     def __init__(self):
         self.__venta = Venta()
+        self.__db = Mongo()
     
     def pVenta(self):
         return input('¿Agregar un automóvil? (s/n): ')
@@ -14,6 +18,8 @@ class Menu():
     def nuevoEmpleado(self):
         nombre = input('Ingresa el nombre del empleado: ')
         self.__venta.nuevoEmpleado(nombre)
+        # Insertar Empleado a la base de datos (recive al objeto empleado)
+        self.__db.insertarEmpleado(self.__venta.getEmpleado())
         self.nuevoVehiculo()
 
     
@@ -29,11 +35,13 @@ class Menu():
             marca = input('Ingresa la marca: ')
             modelo = input('Ingresa el modelo: ')
             precio = float(input('Ingresa el precio: '))
-            self.__venta.getEmpleado().addVehiculo(marca, modelo, precio)
+            v = Vehiculo(marca, modelo, precio)
+            self.__venta.getEmpleado().addVehiculo(v)
+            # Insertar Auto a la base de datos (recive al objeto auto , bono del empleado, comisiones empleado)
+            self.__db.insertarAuto(v , self.__venta.getEmpleado().getBono(), self.__venta.getEmpleado().getComisiones())
             respuesta = self.pVenta()
         self.__venta.guardarEmpleado()
         self.imprimirEmpleado()
-        # self.qNuevoEmpleado()
 
     def imprimirVehiculos(self):
         for vehiculo in self.__venta.getEmpleado().getvVendidos():
@@ -70,8 +78,8 @@ class Menu():
 
 
     def run(self):
-        self.cargarArchivo()
+        # self.cargarArchivo()
         self.qNuevoEmpleado()
         self.imprimirEmpleados()
         self.imprimirNomina()
-        self.guardarArchivo(self.__venta.getEmpleados())
+        # self.guardarArchivo(self.__venta.getEmpleados())

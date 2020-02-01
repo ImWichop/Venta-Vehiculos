@@ -6,6 +6,7 @@ class Empleado():
         self.__salario = salario 
         self.__vVendidos = []
         self.__comisiones = 0
+        self.__bono = 0
 
     def getNombre(self):
         return self.__nombre
@@ -15,12 +16,14 @@ class Empleado():
     
     def getComisiones(self):
         return self.__comisiones
+
+    def getBono(self):
+        return self.__bono
     
     def getvVendidos(self):
         return self.__vVendidos
     
-    def addVehiculo(self, marca, modelo, precio):
-        v = Vehiculo(marca, modelo, precio)
-        self.__comisiones += v.getComision()
-        self.__salario += 1000
-        self.__vVendidos.append(v)
+    def addVehiculo(self, vehiculo):
+        self.__comisiones += vehiculo.getComision()
+        self.__bono += 1000
+        self.__vVendidos.append(vehiculo)
